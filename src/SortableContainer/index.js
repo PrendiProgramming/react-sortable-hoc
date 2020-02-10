@@ -315,6 +315,7 @@ export default function sortableContainer(
           position: 'fixed',
           top: `${this.boundingClientRect.top - margin.top}px`,
           width: `${this.width}px`,
+          transform: `scale(${this.props.scale || 1})`,
         });
 
         if (isKeySorting) {
@@ -568,8 +569,8 @@ export default function sortableContainer(
 
       const offset = getPosition(event);
       const translate = {
-        x: offset.x - this.initialOffset.x,
-        y: offset.y - this.initialOffset.y,
+        x: (offset.x - this.initialOffset.x) * (1 / this.props.scale),
+        y: (offset.y - this.initialOffset.y) * (1 / this.props.scale),
       };
 
       // Adjust for window scroll
@@ -618,6 +619,9 @@ export default function sortableContainer(
       ) {
         setTransitionDuration(this.helper, keyboardSortingTransitionDuration);
       }
+      if (this.props.scale) {
+        translate.scale = 'scale(' + this.props.scale + ')';
+      }
 
       setTranslate3d(this.helper, translate);
     }
@@ -648,9 +652,9 @@ export default function sortableContainer(
 
         // For keyboard sorting, we want user input to dictate the position of the nodes
         const mustShiftBackward =
-          isKeySorting && (index > this.index && index <= prevIndex);
+          isKeySorting && index > this.index && index <= prevIndex;
         const mustShiftForward =
-          isKeySorting && (index < this.index && index >= prevIndex);
+          isKeySorting && index < this.index && index >= prevIndex;
 
         const translate = {
           x: 0,

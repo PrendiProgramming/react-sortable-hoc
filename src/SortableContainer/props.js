@@ -10,6 +10,7 @@ export const propTypes = {
   contentWindow: PropTypes.any,
   disableAutoscroll: PropTypes.bool,
   distance: PropTypes.number,
+  scale: PropTypes.number,
   getContainer: PropTypes.func,
   getHelperDimensions: PropTypes.func,
   helperClass: PropTypes.string,
@@ -72,6 +73,7 @@ export const defaultProps = {
   shouldCancelStart: defaultShouldCancelStart,
   transitionDuration: 300,
   useWindowAsScrollContainer: false,
+  scale: 1,
 };
 
 export const omittedProps = Object.keys(propTypes);

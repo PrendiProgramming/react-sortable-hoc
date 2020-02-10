@@ -69,8 +69,11 @@ export function setInlineStyles(node, styles) {
 }
 
 export function setTranslate3d(node, translate) {
-  node.style[`${vendorPrefix}Transform`] =
-    translate == null ? '' : `translate3d(${translate.x}px,${translate.y}px,0)`;
+  node.style[''.concat(vendorPrefix, 'Transform')] =
+    translate == null
+      ? ''
+      : (translate.scale || '') +
+        ' translate3d('.concat(translate.x, 'px,').concat(translate.y, 'px,0)');
 }
 
 export function setTransitionDuration(node, duration) {
