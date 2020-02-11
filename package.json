@@ -12,6 +12,7 @@
   "umd:main": "dist/react-sortable-hoc.umd.js",
   "module": "dist/react-sortable-hoc.esm.js",
   "jsnext:main": "dist/react-sortable-hoc.esm.js",
+  "source": "src/index.js",
   "types": "types/index.d.ts",
   "license": "MIT",
   "repository": {
